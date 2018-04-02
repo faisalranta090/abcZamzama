@@ -65,4 +65,21 @@ class HrEditDetailControler extends Controller
         Session::flash('dataEdit','successfully edit.');
         return Redirect::to('hr/viewSubDepartmentList?pageType=viewlist&&parentCode=10&&m='.$_GET['m'].'');
     }
+
+    public function editDesignationDetail(){
+        $designationSection = Input::get('designationSection');
+        foreach($designationSection as $row){
+            $designation_name = Input::get('designation_name_'.$row.'');
+            $designation_id = Input::get('designation_id_'.$row.'');
+            $data1['designation_name'] = strip_tags($designation_name);
+            $data1['username']        = Auth::user()->name;
+            $data1['company_id']          = $_GET['m'];
+            $data1['date']            = date("Y-m-d");
+            $data1['time']            = date("H:i:s");
+        
+            DB::table('designation')->where('id', $designation_id)->update($data1);   
+        }
+        Session::flash('dataEdit','successfully edit.');
+        return Redirect::to('hr/viewDesignationList?pageType=viewlist&&parentCode=11&&m='.$_GET['m'].'');
+    }
 }

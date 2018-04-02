@@ -114,7 +114,11 @@ class HrController extends Controller
             'path' => LengthAwarePaginator::resolveCurrentPath()
         ]);
         return view('Hr.viewDesignationList', ['designations' => $designations]);
-		
+
+	}
+
+	public function editDesignationForm(){
+		return view('Hr.editDesignationForm');
 	}
 
 	public function createHealthInsuranceForm(){

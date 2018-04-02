@@ -36,7 +36,7 @@
 														<th class="text-center col-sm-1">S.No</th>
 														<th class="text-center">Designation Name</th>
 														<th class="text-center">Created By</th>
-														<th class="text-center col-sm-1">Action</th>
+														<th class="text-center">Action</th>
 													</thead>
 													<tbody>
 														<?php $counter = 1;?>
@@ -46,6 +46,15 @@
 																<td><?php echo $y->designation_name;?></td>
 																<td><?php echo $y->username;?></td>
 																<td class="text-center">
+																	<button class="edit-modal btn btn-info" onclick="showMasterTableEditModel('hr/editDesignationForm','<?php echo $y->id ?>','Designation Edit Detail Form','<?php echo $m?>')">
+                    													<span class="glyphicon glyphicon-edit"></span>
+                													</button>
+
+
+                													
+                													<button class="delete-modal btn btn-danger" onclick="deleteRowMasterTable('<?php echo $y->designation_name ?>','<?php echo $y->id ?>','designation')">
+                    													<span class="glyphicon glyphicon-trash"></span>
+                													</button>
 																</td>
 															</tr>
 														@endforeach

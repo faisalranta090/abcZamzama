@@ -106,6 +106,7 @@ Route::group(['prefix' => 'hr','before' => 'csrf'], function () {
 
 	Route::get('/createDesignationForm', 'HrController@createDesignationForm');
 	Route::get('/viewDesignationList','HrController@viewDesignationList');
+	Route::get('/editDesignationForm','HrController@editDesignationForm');
 
 	Route::get('/createHealthInsuranceForm', 'HrController@createHealthInsuranceForm');
 	Route::get('/viewHealthInsuranceList','HrController@viewHealthInsuranceList');
@@ -153,6 +154,8 @@ Route::group(['prefix' => 'had','before' => 'csrf'], function () {
 	Route::post('/editSubDepartmentDetail', 'HrEditDetailControler@editSubDepartmentDetail');
 	
 	Route::post('/addDesignationDetail', 'HrAddDetailControler@addDesignationDetail');
+	Route::post('/editDesignationDetail', 'HrEditDetailControler@editDesignationDetail');
+	
 	Route::post('/addHealthInsuranceDetail', 'HrAddDetailControler@addHealthInsuranceDetail');
 	Route::post('/addLifeInsuranceDetail', 'HrAddDetailControler@addLifeInsuranceDetail');
 	Route::post('/addJobTypeDetail', 'HrAddDetailControler@addJobTypeDetail');
