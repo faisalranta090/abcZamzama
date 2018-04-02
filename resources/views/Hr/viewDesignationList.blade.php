@@ -5,6 +5,7 @@
 	}else{
 		$m = Auth::user()->company_id;
 	}
+	$parentCode = $_GET['parentCode'];
 ?>
 
 @extends('layouts.default')
@@ -50,6 +51,7 @@
 														@endforeach
 													</tbody>
 												</table>
+												<div class="pagination">{!! str_replace('/?', '?', $designations->appends(['pageType' => 'viewlist','parentCode' => $parentCode,'m' => $m])->fragment('SFR')->render()) !!}</div>
 											</div>
 										</div>
 									</div>
