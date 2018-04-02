@@ -103,9 +103,18 @@ class HrController extends Controller
 	}
 	
 	public function viewDesignationList(){
-		$designations = new Designation;
-		$designations = $designations::where('company_id','=',$_GET['m'])->orderBy('id')->get();
-   		return view('Hr.viewDesignationList',compact('designations'));
+
+		$page = LengthAwarePaginator::resolveCurrentPage();
+		$total = DB::table('designation')->where('status','=','1')->where('company_id','=',$_GET['m'])->count('id'); //Count the total record
+        $perPage = 10;
+         
+        //Set the limit and offset for a given page.
+        $results = DB::table('designation')->forPage($page, $perPage)->where('status','=','1')->where('company_id','=',$_GET['m'])->get(['id','designation_name','username']);
+        $designations = new LengthAwarePaginator($results, $total, $perPage, $page, [
+            'path' => LengthAwarePaginator::resolveCurrentPath()
+        ]);
+        return view('Hr.viewDesignationList', ['designations' => $designations]);
+		
 	}
 
 	public function createHealthInsuranceForm(){
