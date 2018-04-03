@@ -5,6 +5,7 @@
 	}else{
 		$m = Auth::user()->company_id;
 	}
+	$parentCode = $_GET['parentCode'];
 ?>
 
 @extends('layouts.default')
@@ -36,7 +37,7 @@
 														<th class="text-center">Qualification Name</th>
 														<th class="text-center">Institute Name</th>
 														<th class="text-center">Created By</th>
-														<th class="text-center col-sm-1">Action</th>
+														<th class="text-center">Action</th>
 													</thead>
 													<tbody>
 														<?php $counter = 1;?>
@@ -50,12 +51,22 @@
 																<td><?php echo $InstituteName;?></td>
 																<td><?php echo $y->username;?></td>
 																<td class="text-center">
+																	<button class="edit-modal btn btn-info" onclick="showMasterTableEditModel('hr/editQualificationForm','<?php echo $y->id ?>','Qualification Edit Detail Form','<?php echo $m?>')">
+                    													<span class="glyphicon glyphicon-edit"></span>
+                													</button>
+
+
+                													
+                													<button class="delete-modal btn btn-danger" onclick="deleteRowMasterTable('<?php echo $y->qualification_name ?>','<?php echo $y->id ?>','qualification')">
+                    													<span class="glyphicon glyphicon-trash"></span>
+                													</button>
 																</td>
 															</tr>
 														@endforeach
 													</tbody>
 												</table>
 											</div>
+											<div class="pagination">{!! str_replace('/?', '?', $Qualifications->appends(['pageType' => 'viewlist','parentCode' => $parentCode,'m' => $m])->fragment('SFR')->render()) !!}</div>
 										</div>
 									</div>
 								</div>

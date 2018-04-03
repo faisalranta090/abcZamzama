@@ -82,4 +82,131 @@ class HrEditDetailControler extends Controller
         Session::flash('dataEdit','successfully edit.');
         return Redirect::to('hr/viewDesignationList?pageType=viewlist&&parentCode=11&&m='.$_GET['m'].'');
     }
+
+    public function editHealthInsuranceDetail(){
+        $healthInsuranceSection = Input::get('healthInsuranceSection');
+        foreach($healthInsuranceSection as $row){
+            $health_insurance_name = Input::get('health_insurance_name_'.$row.'');
+            $health_insurance_id = Input::get('health_insurance_id_'.$row.'');
+            $data1['health_insurance_name'] = strip_tags($health_insurance_name);
+            $data1['username']        = Auth::user()->name;
+            $data1['company_id']          = $_GET['m'];
+            $data1['date']            = date("Y-m-d");
+            $data1['time']            = date("H:i:s");
+        
+            DB::table('health_insurance')->where('id', $health_insurance_id)->update($data1);   
+        }
+        Session::flash('dataEdit','successfully edit.');
+        return Redirect::to('hr/viewHealthInsuranceList?pageType=viewlist&&parentCode=12&&m='.$_GET['m'].'');
+    }
+
+    public function editLifeInsuranceDetail(){
+        $lifeInsuranceSection = Input::get('lifeInsuranceSection');
+        foreach($lifeInsuranceSection as $row){
+            $life_insurance_name = Input::get('life_insurance_name_'.$row.'');
+            $life_insurance_id = Input::get('life_insurance_id_'.$row.'');
+            $data1['life_insurance_name'] = strip_tags($life_insurance_name);
+            $data1['username']        = Auth::user()->name;
+            $data1['company_id']          = $_GET['m'];
+            $data1['date']            = date("Y-m-d");
+            $data1['time']            = date("H:i:s");
+        
+            DB::table('life_insurance')->where('id', $life_insurance_id)->update($data1);   
+        }
+        Session::flash('dataEdit','successfully edit.');
+        return Redirect::to('hr/viewLifeInsuranceList?pageType=viewlist&&parentCode=13&&m='.$_GET['m'].'');
+    }
+
+    public function editJobTypeDetail(){
+        $jobTypeSection = Input::get('jobTypeSection');
+        foreach($jobTypeSection as $row){
+            $job_type_name = Input::get('job_type_name_'.$row.'');
+            $job_type_id = Input::get('job_type_id_'.$row.'');
+            $data1['job_type_name'] = strip_tags($job_type_name);
+            $data1['username']        = Auth::user()->name;
+            $data1['company_id']          = $_GET['m'];
+            $data1['date']            = date("Y-m-d");
+            $data1['time']            = date("H:i:s");
+        
+            DB::table('job_type')->where('id', $job_type_id)->update($data1);   
+        }
+        Session::flash('dataEdit','successfully edit.');
+        return Redirect::to('hr/viewJobTypeList?pageType=viewlist&&parentCode=14&&m='.$_GET['m'].'');
+    }
+
+    public function editShiftTypeDetail(){
+        $shiftTypeSection = Input::get('shiftTypeSection');
+        foreach($shiftTypeSection as $row){
+            $shift_type_name = Input::get('shift_type_name_'.$row.'');
+            $shift_type_id = Input::get('shift_type_id_'.$row.'');
+            $data1['shift_type_name'] = strip_tags($shift_type_name);
+            $data1['username']        = Auth::user()->name;
+            $data1['company_id']          = $_GET['m'];
+            $data1['date']            = date("Y-m-d");
+            $data1['time']            = date("H:i:s");
+        
+            DB::table('shift_type')->where('id', $shift_type_id)->update($data1);   
+        }
+        Session::flash('dataEdit','successfully edit.');
+        return Redirect::to('hr/viewShiftTypeList?pageType=viewlist&&parentCode=19&&m='.$_GET['m'].'');
+    }
+
+    public function editAdvanceTypeDetail(){
+        $advanceTypeSection = Input::get('advanceTypeSection');
+        foreach($advanceTypeSection as $row){
+            $advance_type_name = Input::get('advance_type_name_'.$row.'');
+            $advance_type_id = Input::get('advance_type_id_'.$row.'');
+            $data1['advance_type_name'] = strip_tags($advance_type_name);
+            $data1['username']        = Auth::user()->name;
+            $data1['company_id']          = $_GET['m'];
+            $data1['date']            = date("Y-m-d");
+            $data1['time']            = date("H:i:s");
+        
+            DB::table('advance_type')->where('id', $advance_type_id)->update($data1);   
+        }
+        Session::flash('dataEdit','successfully edit.');
+        return Redirect::to('hr/viewAdvanceTypeList?pageType=viewlist&&parentCode=18&&m='.$_GET['m'].'');
+    }
+
+    public function editLoanTypeDetail(){
+        $loanTypeSection = Input::get('loanTypeSection');
+        foreach($loanTypeSection as $row){
+            $loan_type_name = Input::get('loan_type_name_'.$row.'');
+            $loan_type_id = Input::get('loan_type_id_'.$row.'');
+            $data1['loan_type_name'] = strip_tags($loan_type_name);
+            $data1['username']        = Auth::user()->name;
+            $data1['company_id']          = $_GET['m'];
+            $data1['date']            = date("Y-m-d");
+            $data1['time']            = date("H:i:s");
+        
+            DB::table('loan_type')->where('id', $loan_type_id)->update($data1);   
+        }
+        Session::flash('dataEdit','successfully edit.');
+        return Redirect::to('hr/viewLoanTypeList?pageType=viewlist&&parentCode=17&&m='.$_GET['m'].'');
+    }
+
+    public function editLeaveTypeDetail(){
+        $leaveTypeSection = Input::get('leaveTypeSection');
+        foreach($leaveTypeSection as $row){
+            $leave_type_name = Input::get('leave_type_name_'.$row.'');
+            $leave_type_id = Input::get('leave_type_id_'.$row.'');
+            $data1['leave_type_name'] = strip_tags($leave_type_name);
+            $data1['username']        = Auth::user()->name;
+            $data1['company_id']          = $_GET['m'];
+            $data1['date']            = date("Y-m-d");
+            $data1['time']            = date("H:i:s");
+        
+            DB::table('leave_type')->where('id', $leave_type_id)->update($data1);   
+        }
+        Session::flash('dataEdit','successfully edit.');
+        return Redirect::to('hr/viewLeaveTypeList?pageType=viewlist&&parentCode=16&&m='.$_GET['m'].'');
+    }
+
+    
+
+    
+
+    
+
+    
 }

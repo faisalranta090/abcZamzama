@@ -5,8 +5,8 @@
 	}else{
 		$m = Auth::user()->company_id;
 	}
+	$parentCode = $_GET['parentCode'];
 ?>
-
 @extends('layouts.default')
 
 @section('content')
@@ -35,7 +35,7 @@
 														<th class="text-center col-sm-1">S.No</th>
 														<th class="text-center">Shift Type Name</th>
 														<th class="text-center">Created By</th>
-														<th class="text-center col-sm-1">Action</th>
+														<th class="text-center">Action</th>
 													</thead>
 													<tbody>
 														<?php $counter = 1;?>
@@ -45,12 +45,22 @@
 																<td><?php echo $y->shift_type_name;?></td>
 																<td><?php echo $y->username;?></td>
 																<td class="text-center">
+																	<button class="edit-modal btn btn-info" onclick="showMasterTableEditModel('hr/editShiftTypeForm','<?php echo $y->id ?>','Shift Type Edit Detail Form','<?php echo $m?>')">
+                    													<span class="glyphicon glyphicon-edit"></span>
+                													</button>
+
+
+                													
+                													<button class="delete-modal btn btn-danger" onclick="deleteRowMasterTable('<?php echo $y->shift_type_name ?>','<?php echo $y->id ?>','shift_type')">
+                    													<span class="glyphicon glyphicon-trash"></span>
+                													</button>
 																</td>
 															</tr>
 														@endforeach
 													</tbody>
 												</table>
 											</div>
+											<div class="pagination">{!! str_replace('/?', '?', $ShiftTypes->appends(['pageType' => 'viewlist','parentCode' => $parentCode,'m' => $m])->fragment('SFR')->render()) !!}</div>
 										</div>
 									</div>
 								</div>

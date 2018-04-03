@@ -110,27 +110,35 @@ Route::group(['prefix' => 'hr','before' => 'csrf'], function () {
 
 	Route::get('/createHealthInsuranceForm', 'HrController@createHealthInsuranceForm');
 	Route::get('/viewHealthInsuranceList','HrController@viewHealthInsuranceList');
+	Route::get('/editHealthInsuranceForm', 'HrController@editHealthInsuranceForm');
 
 	Route::get('/createLifeInsuranceForm', 'HrController@createLifeInsuranceForm');
 	Route::get('/viewLifeInsuranceList','HrController@viewLifeInsuranceList');
+	Route::get('/editLifeInsuranceForm', 'HrController@editLifeInsuranceForm');
 
 	Route::get('/createJobTypeForm', 'HrController@createJobTypeForm');
 	Route::get('/viewJobTypeList','HrController@viewJobTypeList');
+	Route::get('/editJobTypeForm', 'HrController@editJobTypeForm');
 
 	Route::get('/createQualificationForm', 'HrController@createQualificationForm');
 	Route::get('/viewQualificationList','HrController@viewQualificationList');
+	Route::get('/editQualificationForm', 'HrController@editQualificationForm');
 
 	Route::get('/createLeaveTypeForm', 'HrController@createLeaveTypeForm');
 	Route::get('/viewLeaveTypeList','HrController@viewLeaveTypeList');
+	Route::get('/editLeaveTypeForm', 'HrController@editLeaveTypeForm');
 
 	Route::get('/createLoanTypeForm', 'HrController@createLoanTypeForm');
 	Route::get('/viewLoanTypeList','HrController@viewLoanTypeList');
+	Route::get('/editLoanTypeForm', 'HrController@editLoanTypeForm');
 
 	Route::get('/createAdvanceTypeForm', 'HrController@createAdvanceTypeForm');
 	Route::get('/viewAdvanceTypeList','HrController@viewAdvanceTypeList');
+	Route::get('/editAdvanceTypeForm', 'HrController@editAdvanceTypeForm');
 
 	Route::get('/createShiftTypeForm', 'HrController@createShiftTypeForm');
 	Route::get('/viewShiftTypeList','HrController@viewShiftTypeList');
+	Route::get('/editShiftTypeForm', 'HrController@editShiftTypeForm');
 	
 	
 	Route::get('/createEmployeeForm', 'HrController@createEmployeeForm');
@@ -157,13 +165,28 @@ Route::group(['prefix' => 'had','before' => 'csrf'], function () {
 	Route::post('/editDesignationDetail', 'HrEditDetailControler@editDesignationDetail');
 	
 	Route::post('/addHealthInsuranceDetail', 'HrAddDetailControler@addHealthInsuranceDetail');
+	Route::post('/editHealthInsuranceDetail', 'HrEditDetailControler@editHealthInsuranceDetail');
+	
 	Route::post('/addLifeInsuranceDetail', 'HrAddDetailControler@addLifeInsuranceDetail');
+	Route::post('/editLifeInsuranceDetail', 'HrEditDetailControler@editLifeInsuranceDetail');
+	
 	Route::post('/addJobTypeDetail', 'HrAddDetailControler@addJobTypeDetail');
+	Route::post('/editJobTypeDetail', 'HrEditDetailControler@editJobTypeDetail');
+	
 	Route::post('/addQualificationDetail', 'HrAddDetailControler@addQualificationDetail');
+	Route::post('/editQualificationDetail', 'HrEditDetailControler@editQualificationDetail');
+	
 	Route::post('/addLeaveTypeDetail', 'HrAddDetailControler@addLeaveTypeDetail');
+	Route::post('/editLeaveTypeDetail', 'HrEditDetailControler@editLeaveTypeDetail');
+	
 	Route::post('/addLoanTypeDetail', 'HrAddDetailControler@addLoanTypeDetail');
+	Route::post('/editLoanTypeDetail', 'HrEditDetailControler@editLoanTypeDetail');
+	
 	Route::post('/addAdvanceTypeDetail', 'HrAddDetailControler@addAdvanceTypeDetail');
+	Route::post('/editAdvanceTypeDetail', 'HrEditDetailControler@editAdvanceTypeDetail');
+	
 	Route::post('/addShiftTypeDetail', 'HrAddDetailControler@addShiftTypeDetail');
+	Route::post('/editShiftTypeDetail', 'HrEditDetailControler@editShiftTypeDetail');
 	
 	Route::post('/addEmployeeDetail','HrAddDetailControler@addEmployeeDetail');
 	Route::post('/addManageAttendenceDetail','HrAddDetailControler@addManageAttendenceDetail');

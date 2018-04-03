@@ -126,10 +126,24 @@ class HrController extends Controller
 	}
 	
 	public function viewHealthInsuranceList(){
-		$HealthInsurances = new HealthInsurance;
-		$HealthInsurances = $HealthInsurances::where('company_id','=',$_GET['m'])->orderBy('id')->get();
-   		return view('Hr.viewHealthInsuranceList',compact('HealthInsurances'));
+		
+		$page = LengthAwarePaginator::resolveCurrentPage();
+		$total = DB::table('health_insurance')->where('status','=','1')->where('company_id','=',$_GET['m'])->count('id'); //Count the total record
+        $perPage = 10;
+         
+        //Set the limit and offset for a given page.
+        $results = DB::table('health_insurance')->forPage($page, $perPage)->where('status','=','1')->where('company_id','=',$_GET['m'])->get(['id','health_insurance_name','username']);
+        $HealthInsurances = new LengthAwarePaginator($results, $total, $perPage, $page, [
+            'path' => LengthAwarePaginator::resolveCurrentPath()
+        ]);
+        return view('Hr.viewHealthInsuranceList', ['HealthInsurances' => $HealthInsurances]);
 	}
+
+	public function editHealthInsuranceForm(){
+		return view('Hr.editHealthInsuranceForm');
+	}
+
+	
 
 	
 	public function createLifeInsuranceForm(){
@@ -137,9 +151,20 @@ class HrController extends Controller
 	}
 
 	public function viewLifeInsuranceList(){
-		$LifeInsurances = new LifeInsurance;
-		$LifeInsurances = $LifeInsurances::where('company_id','=',$_GET['m'])->orderBy('id')->get();
-   		return view('Hr.viewLifeInsuranceList',compact('LifeInsurances'));
+		$page = LengthAwarePaginator::resolveCurrentPage();
+		$total = DB::table('life_insurance')->where('status','=','1')->where('company_id','=',$_GET['m'])->count('id'); //Count the total record
+        $perPage = 10;
+         
+        //Set the limit and offset for a given page.
+        $results = DB::table('life_insurance')->forPage($page, $perPage)->where('status','=','1')->where('company_id','=',$_GET['m'])->get(['id','life_insurance_name','username']);
+        $LifeInsurances = new LengthAwarePaginator($results, $total, $perPage, $page, [
+            'path' => LengthAwarePaginator::resolveCurrentPath()
+        ]);
+        return view('Hr.viewLifeInsuranceList', ['LifeInsurances' => $LifeInsurances]);
+	}
+
+	public function editLifeInsuranceForm(){
+		return view('Hr.editLifeInsuranceForm');
 	}
 
 
@@ -148,9 +173,20 @@ class HrController extends Controller
 	}
 
 	public function viewJobTypeList(){
-		$JobTypes = new JobType;
-		$JobTypes = $JobTypes::where('company_id','=',$_GET['m'])->orderBy('id')->get();
-   		return view('Hr.viewJobTypeList',compact('JobTypes'));
+		$page = LengthAwarePaginator::resolveCurrentPage();
+		$total = DB::table('job_type')->where('status','=','1')->where('company_id','=',$_GET['m'])->count('id'); //Count the total record
+        $perPage = 10;
+         
+        //Set the limit and offset for a given page.
+        $results = DB::table('job_type')->forPage($page, $perPage)->where('status','=','1')->where('company_id','=',$_GET['m'])->get(['id','job_type_name','username']);
+        $JobTypes = new LengthAwarePaginator($results, $total, $perPage, $page, [
+            'path' => LengthAwarePaginator::resolveCurrentPath()
+        ]);
+        return view('Hr.viewJobTypeList', ['JobTypes' => $JobTypes]);
+	}
+
+	public function editJobTypeForm(){
+		return view('Hr.editJobTypeForm');
 	}
 
 	public function createQualificationForm(){
@@ -164,9 +200,27 @@ class HrController extends Controller
 	}
 
 	public function viewQualificationList(){
-		$Qualifications = new Qualification;
-		$Qualifications = $Qualifications::where('company_id','=',$_GET['m'])->orderBy('id')->get();
-   		return view('Hr.viewQualificationList',compact('Qualifications'));
+		
+   		$page = LengthAwarePaginator::resolveCurrentPage();
+		$total = DB::table('qualification')->where('status','=','1')->where('company_id','=',$_GET['m'])->count('id'); //Count the total record
+        $perPage = 10;
+         
+        //Set the limit and offset for a given page.
+        $results = DB::table('qualification')->forPage($page, $perPage)->where('status','=','1')->where('company_id','=',$_GET['m'])->get(['id','qualification_name','institute_id','country_id','state_id','city_id','username']);
+        $Qualifications = new LengthAwarePaginator($results, $total, $perPage, $page, [
+            'path' => LengthAwarePaginator::resolveCurrentPath()
+        ]);
+        return view('Hr.viewQualificationList', ['Qualifications' => $Qualifications]);
+	}
+
+	public function editQualificationForm(){
+		$countries = new Countries;
+		$countries = $countries::where('status', '=', 1)->get();
+
+		$institutes = new Institute;
+		$institutes = $institutes::where('status', '=', 1)->get();
+		
+		return view('Hr.editQualificationForm',compact('countries','institutes'));
 	}
 
 	public function createLeaveTypeForm(){
@@ -174,9 +228,21 @@ class HrController extends Controller
 	}
 
 	public function viewLeaveTypeList(){
-		$LeaveTypes = new LeaveType;
-		$LeaveTypes = $LeaveTypes::where('company_id','=',$_GET['m'])->orderBy('id')->get();
-   		return view('Hr.viewLeaveTypeList',compact('LeaveTypes'));
+
+   		$page = LengthAwarePaginator::resolveCurrentPage();
+		$total = DB::table('leave_type')->where('status','=','1')->where('company_id','=',$_GET['m'])->count('id'); //Count the total record
+        $perPage = 10;
+         
+        //Set the limit and offset for a given page.
+        $results = DB::table('leave_type')->forPage($page, $perPage)->where('status','=','1')->where('company_id','=',$_GET['m'])->get(['id','leave_type_name','username']);
+        $LeaveTypes = new LengthAwarePaginator($results, $total, $perPage, $page, [
+            'path' => LengthAwarePaginator::resolveCurrentPath()
+        ]);
+        return view('Hr.viewLeaveTypeList', ['LeaveTypes' => $LeaveTypes]);
+	}
+
+	public function editLeaveTypeForm(){
+		return view('Hr.editLeaveTypeForm');
 	}
 
 	public function createLoanTypeForm(){
@@ -184,9 +250,21 @@ class HrController extends Controller
 	}
 
 	public function viewLoanTypeList(){
-		$LoanTypes = new LoanType;
-		$LoanTypes = $LoanTypes::where('company_id','=',$_GET['m'])->orderBy('id')->get();
-   		return view('Hr.viewLoanTypeList',compact('LoanTypes'));
+		
+   		$page = LengthAwarePaginator::resolveCurrentPage();
+		$total = DB::table('loan_type')->where('status','=','1')->where('company_id','=',$_GET['m'])->count('id'); //Count the total record
+        $perPage = 10;
+         
+        //Set the limit and offset for a given page.
+        $results = DB::table('loan_type')->forPage($page, $perPage)->where('status','=','1')->where('company_id','=',$_GET['m'])->get(['id','loan_type_name','username']);
+        $LoanTypes = new LengthAwarePaginator($results, $total, $perPage, $page, [
+            'path' => LengthAwarePaginator::resolveCurrentPath()
+        ]);
+        return view('Hr.viewLoanTypeList', ['LoanTypes' => $LoanTypes]);
+	}
+
+	public function editLoanTypeForm(){
+		return view('Hr.editLoanTypeForm');
 	}
 
 	public function createAdvanceTypeForm(){
@@ -194,9 +272,21 @@ class HrController extends Controller
 	}
 
 	public function viewAdvanceTypeList(){
-		$AdvanceTypes = new AdvanceType;
-		$AdvanceTypes = $AdvanceTypes::where('company_id','=',$_GET['m'])->orderBy('id')->get();
-   		return view('Hr.viewAdvanceTypeList',compact('AdvanceTypes'));
+
+   		$page = LengthAwarePaginator::resolveCurrentPage();
+		$total = DB::table('advance_type')->where('status','=','1')->where('company_id','=',$_GET['m'])->count('id'); //Count the total record
+        $perPage = 10;
+         
+        //Set the limit and offset for a given page.
+        $results = DB::table('advance_type')->forPage($page, $perPage)->where('status','=','1')->where('company_id','=',$_GET['m'])->get(['id','advance_type_name','username']);
+        $AdvanceTypes = new LengthAwarePaginator($results, $total, $perPage, $page, [
+            'path' => LengthAwarePaginator::resolveCurrentPath()
+        ]);
+        return view('Hr.viewAdvanceTypeList', ['AdvanceTypes' => $AdvanceTypes]);
+	}
+
+	public function editAdvanceTypeForm(){
+		return view('Hr.editAdvanceTypeForm');
 	}
 
 	public function createShiftTypeForm(){
@@ -204,9 +294,21 @@ class HrController extends Controller
 	}
 
 	public function viewShiftTypeList(){
-		$ShiftTypes = new ShiftType;
-		$ShiftTypes = $ShiftTypes::where('company_id','=',$_GET['m'])->orderBy('id')->get();
-   		return view('Hr.viewShiftTypeList',compact('ShiftTypes'));
+		
+   		$page = LengthAwarePaginator::resolveCurrentPage();
+		$total = DB::table('shift_type')->where('status','=','1')->where('company_id','=',$_GET['m'])->count('id'); //Count the total record
+        $perPage = 10;
+         
+        //Set the limit and offset for a given page.
+        $results = DB::table('shift_type')->forPage($page, $perPage)->where('status','=','1')->where('company_id','=',$_GET['m'])->get(['id','shift_type_name','username']);
+        $ShiftTypes = new LengthAwarePaginator($results, $total, $perPage, $page, [
+            'path' => LengthAwarePaginator::resolveCurrentPath()
+        ]);
+        return view('Hr.viewShiftTypeList', ['ShiftTypes' => $ShiftTypes]);
+	}
+
+	public function editShiftTypeForm(){
+		return view('Hr.editShiftTypeForm');
 	}
 	
 	
