@@ -51,9 +51,9 @@
 																<td><?php echo $InstituteName;?></td>
 																<td><?php echo $y->username;?></td>
 																<td class="text-center">
-																	<button class="edit-modal btn btn-info" onclick="showMasterTableEditModel('hr/editQualificationForm','<?php echo $y->id ?>','Qualification Edit Detail Form','<?php echo $m?>')">
+																	<?php /*?><button class="edit-modal btn btn-info" onclick="showMasterTableEditModel('hr/editQualificationForm','<?php echo $y->id ?>','Qualification Edit Detail Form','<?php echo $m?>')">
                     													<span class="glyphicon glyphicon-edit"></span>
-                													</button>
+                													</button><?php */?>
 
 
                 													
