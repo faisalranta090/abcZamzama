@@ -665,7 +665,7 @@ class HrDataCallController extends Controller
 	<?php
 	}
 
-	public function viewJobDetail(){
+	public function viewHiringRequestDetail(){
 		echo '<br />'.$_GET['id'];
 	?>
 		<br />

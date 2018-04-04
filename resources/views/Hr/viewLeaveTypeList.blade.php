@@ -46,13 +46,13 @@
 																<td><?php echo $y->leave_type_name;?></td>
 																<td><?php echo $y->username;?></td>
 																<td class="text-center">
-																	<button class="edit-modal btn btn-info" onclick="showMasterTableEditModel('hr/editLeaveTypeForm','<?php echo $y->id ?>','Leave Type Edit Detail Form','<?php echo $m?>')">
+																	<button class="edit-modal btn-xs btn btn-info" onclick="showMasterTableEditModel('hr/editLeaveTypeForm','<?php echo $y->id ?>','Leave Type Edit Detail Form','<?php echo $m?>')">
                     													<span class="glyphicon glyphicon-edit"></span>
                 													</button>
 
 
                 													
-                													<button class="delete-modal btn btn-danger" onclick="deleteRowMasterTable('<?php echo $y->leave_type_name ?>','<?php echo $y->id ?>','leave_type')">
+                													<button class="delete-modal btn-xs btn btn-danger" onclick="deleteRowMasterTable('<?php echo $y->leave_type_name ?>','<?php echo $y->id ?>','leave_type')">
                     													<span class="glyphicon glyphicon-trash"></span>
                 													</button>
 																</td>

@@ -5,7 +5,6 @@
 		$d 	= DB::selectOne('select `dbName` from `company` where `id` = '.$m.'')->dbName;
 		$subDepartmentDetail = DB::selectOne('select * from `sub_department` where `id` = '.$id.'');
 	?>
-	Hello Rantaasdfasd
 	<div class="">
 		<div class="panel">
 			<div class="panel-body">
@@ -14,6 +13,8 @@
 						<div class="well">
 							<?php echo Form::open(array('url' => 'had/editSubDepartmentDetail?m='.$m.'&&d='.$d.'','id'=>'subDepartmentForm'));?>
 								<input type="hidden" name="_token" value="{{ csrf_token() }}">
+								<input type="hidden" name="pageType" value="<?php echo $_GET['pageType']?>">
+								<input type="hidden" name="parentCode" value="<?php echo $_GET['parentCode']?>">
 								<div class="panel">
 									<div class="panel-body">
 										<div class="row">
@@ -31,6 +32,7 @@
 		                                    		@foreach($departments as $key => $y)
 		                                    			<option value="{{ $y->id}}" {{ $subDepartmentDetail->department_id == $y->id ? 'selected="selected"' : '' }}>{{ $y->department_name}}</option>
 		                                    		@endforeach
+		                                    		
 		                                    	</select>
 											</div>
 										</div>

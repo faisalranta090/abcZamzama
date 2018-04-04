@@ -19,6 +19,7 @@ use App\Models\LeaveType;
 use App\Models\LoanType;
 use App\Models\AdvanceType;
 use App\Models\ShiftType;
+use App\Models\RequestHiring;
 
 use App\Models\Job;
 use Input;
@@ -75,7 +76,7 @@ class HrController extends Controller
 
 	public function createSubDepartmentForm(){
 		$departments = new Department;
-		$departments = $departments::where('company_id','=',$_GET['m'])->orderBy('id')->get();
+		$departments = $departments::where('company_id','=',$_GET['m'])->where('status','=','1')->orderBy('id')->get();
 		return view('Hr.createSubDepartmentForm',compact('departments'));
 	}
 	
@@ -94,7 +95,7 @@ class HrController extends Controller
 
 	public function editSubDepartmentForm(){
 		$departments = new Department;
-		$departments = $departments::where('company_id','=',$_GET['m'])->orderBy('id')->get();
+		$departments = $departments::where('company_id','=',$_GET['m'])->where('status','=','1')->orderBy('id')->get();
 		return view('Hr.editSubDepartmentForm',compact('departments'));
 	}
 
@@ -313,16 +314,46 @@ class HrController extends Controller
 	
 	
 
-	public function createJobAddForm(){
+	public function createHiringRequestAddForm(){
 		$departments = new Department;
-		$departments = $departments::where('company_id','=',$_GET['m'])->orderBy('id')->get();
-		return view('Hr.createJobAddForm',compact('departments'));
+		$JobTypes = new JobType;
+		$Designations = new Designation;
+		$Qualifications = new Qualification;
+		$ShiftTypes = new ShiftType;
+		
+		$departments = $departments::where('status','=','1')->where('company_id','=',$_GET['m'])->orderBy('id')->get();
+		$JobTypes = $JobTypes::where('status','=','1')->where('company_id','=',$_GET['m'])->orderBy('id')->get();
+		$Designations = $Designations::where('status','=','1')->where('company_id','=',$_GET['m'])->orderBy('id')->get();
+		$Qualifications = $Qualifications::where('status','=','1')->where('company_id','=',$_GET['m'])->orderBy('id')->get();
+		$ShiftTypes = $ShiftTypes::where('status','=','1')->where('company_id','=',$_GET['m'])->orderBy('id')->get();
+		return view('Hr.createHiringRequestAddForm',compact('departments','JobTypes','Designations','Qualifications','ShiftTypes'));
 	}
 
-	public function viewJobsList(){
-		$jobs = new Job;
-		$jobs = $jobs::orderBy('id')->get();
-		return view('Hr.viewJobsList',compact('jobs'));
+	public function viewHiringRequestList(){
+		$m = $_GET['m'];
+		$d = DB::selectOne('select `dbName` from `company` where `id` = '.$m.'')->dbName;
+		
+		
+		
+		Config::set(['database.connections.tenant.database' => $d]);
+		Config::set(['database.connections.tenant.username' => 'root']);
+		Config::set('database.default', 'tenant');
+		DB::reconnect('tenant');
+
+
+		$page = LengthAwarePaginator::resolveCurrentPage();
+		$total = DB::table('RequestHiring')->where('status','=','1')->count('id'); //Count the total record
+        $perPage = 10;
+         
+        //Set the limit and offset for a given page.
+        $results = DB::table('RequestHiring')->forPage($page, $perPage)->where('status','=','1')->get();
+        $RequestHiring = new LengthAwarePaginator($results, $total, $perPage, $page, [
+            'path' => LengthAwarePaginator::resolveCurrentPath()
+        ]);
+        return view('Hr.viewHiringRequestList', ['RequestHiring' => $RequestHiring]);
+        Config::set('database.default', 'mysql');
+		DB::reconnect('mysql');
+
 	}
 	
 	public function createEmployeeForm(){

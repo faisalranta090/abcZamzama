@@ -43,7 +43,7 @@ class HrEditDetailControler extends Controller
 			DB::table('department')->where('id', $department_id)->update($data1);	
 		}
         Session::flash('dataEdit','successfully edit.');
-		return Redirect::to('hr/viewDepartmentList?pageType=viewlist&&parentCode=6&&m='.$_GET['m'].'');
+		return Redirect::to('hr/viewDepartmentList?pageType='.Input::get('pageType').'&&parentCode='.Input::get('parentCode').'&&m='.$_GET['m'].'#SFR');
 	}
 
 
@@ -63,7 +63,7 @@ class HrEditDetailControler extends Controller
             DB::table('sub_department')->where('id', $sub_department_id)->update($data1);    
         }
         Session::flash('dataEdit','successfully edit.');
-        return Redirect::to('hr/viewSubDepartmentList?pageType=viewlist&&parentCode=10&&m='.$_GET['m'].'');
+        return Redirect::to('hr/viewSubDepartmentList?pageType='.Input::get('pageType').'&&parentCode='.Input::get('parentCode').'&&m='.$_GET['m'].'#SFR');
     }
 
     public function editDesignationDetail(){
@@ -80,7 +80,7 @@ class HrEditDetailControler extends Controller
             DB::table('designation')->where('id', $designation_id)->update($data1);   
         }
         Session::flash('dataEdit','successfully edit.');
-        return Redirect::to('hr/viewDesignationList?pageType=viewlist&&parentCode=11&&m='.$_GET['m'].'');
+        return Redirect::to('hr/viewDesignationList?pageType='.Input::get('pageType').'&&parentCode='.Input::get('parentCode').'&&m='.$_GET['m'].'#SFR');
     }
 
     public function editHealthInsuranceDetail(){
@@ -97,7 +97,7 @@ class HrEditDetailControler extends Controller
             DB::table('health_insurance')->where('id', $health_insurance_id)->update($data1);   
         }
         Session::flash('dataEdit','successfully edit.');
-        return Redirect::to('hr/viewHealthInsuranceList?pageType=viewlist&&parentCode=12&&m='.$_GET['m'].'');
+        return Redirect::to('hr/viewHealthInsuranceList?pageType='.Input::get('pageType').'&&parentCode='.Input::get('parentCode').'&&m='.$_GET['m'].'#SFR');
     }
 
     public function editLifeInsuranceDetail(){
@@ -114,7 +114,7 @@ class HrEditDetailControler extends Controller
             DB::table('life_insurance')->where('id', $life_insurance_id)->update($data1);   
         }
         Session::flash('dataEdit','successfully edit.');
-        return Redirect::to('hr/viewLifeInsuranceList?pageType=viewlist&&parentCode=13&&m='.$_GET['m'].'');
+        return Redirect::to('hr/viewLifeInsuranceList?pageType='.Input::get('pageType').'&&parentCode='.Input::get('parentCode').'&&m='.$_GET['m'].'#SFR');
     }
 
     public function editJobTypeDetail(){
@@ -131,7 +131,7 @@ class HrEditDetailControler extends Controller
             DB::table('job_type')->where('id', $job_type_id)->update($data1);   
         }
         Session::flash('dataEdit','successfully edit.');
-        return Redirect::to('hr/viewJobTypeList?pageType=viewlist&&parentCode=14&&m='.$_GET['m'].'');
+        return Redirect::to('hr/viewJobTypeList?pageType='.Input::get('pageType').'&&parentCode='.Input::get('parentCode').'&&m='.$_GET['m'].'#SFR');
     }
 
     public function editShiftTypeDetail(){
@@ -148,7 +148,7 @@ class HrEditDetailControler extends Controller
             DB::table('shift_type')->where('id', $shift_type_id)->update($data1);   
         }
         Session::flash('dataEdit','successfully edit.');
-        return Redirect::to('hr/viewShiftTypeList?pageType=viewlist&&parentCode=19&&m='.$_GET['m'].'');
+        return Redirect::to('hr/viewShiftTypeList?pageType='.Input::get('pageType').'&&parentCode='.Input::get('parentCode').'&&m='.$_GET['m'].'#SFR');
     }
 
     public function editAdvanceTypeDetail(){
@@ -165,7 +165,7 @@ class HrEditDetailControler extends Controller
             DB::table('advance_type')->where('id', $advance_type_id)->update($data1);   
         }
         Session::flash('dataEdit','successfully edit.');
-        return Redirect::to('hr/viewAdvanceTypeList?pageType=viewlist&&parentCode=18&&m='.$_GET['m'].'');
+        return Redirect::to('hr/viewAdvanceTypeList?pageType='.Input::get('pageType').'&&parentCode='.Input::get('parentCode').'&&m='.$_GET['m'].'#SFR');
     }
 
     public function editLoanTypeDetail(){
@@ -182,7 +182,7 @@ class HrEditDetailControler extends Controller
             DB::table('loan_type')->where('id', $loan_type_id)->update($data1);   
         }
         Session::flash('dataEdit','successfully edit.');
-        return Redirect::to('hr/viewLoanTypeList?pageType=viewlist&&parentCode=17&&m='.$_GET['m'].'');
+        return Redirect::to('hr/viewLoanTypeList?pageType='.Input::get('pageType').'&&parentCode='.Input::get('parentCode').'&&m='.$_GET['m'].'#SFR');
     }
 
     public function editLeaveTypeDetail(){
@@ -199,7 +199,7 @@ class HrEditDetailControler extends Controller
             DB::table('leave_type')->where('id', $leave_type_id)->update($data1);   
         }
         Session::flash('dataEdit','successfully edit.');
-        return Redirect::to('hr/viewLeaveTypeList?pageType=viewlist&&parentCode=16&&m='.$_GET['m'].'');
+        return Redirect::to('hr/viewLeaveTypeList?pageType='.Input::get('pageType').'&&parentCode='.Input::get('parentCode').'&&m='.$_GET['m'].'#SFR');
     }
 
     

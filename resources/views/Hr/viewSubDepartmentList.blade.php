@@ -54,10 +54,10 @@
 																<td><?php echo $y->sub_department_name;?></td>
 																<td><?php echo $y->username;?></td>
 																<td class="text-center">
-																	<button class="edit-modal btn btn-info" onclick="showMasterTableEditModel('hr/editSubDepartmentForm','<?php echo $y->id ?>','Sub Department Edit Detail Form','<?php echo $m?>')">
+																	<button class="edit-modal btn btn-xs btn-info" onclick="showMasterTableEditModel('hr/editSubDepartmentForm','<?php echo $y->id ?>','Sub Department Edit Detail Form','<?php echo $m?>')">
                     													<span class="glyphicon glyphicon-edit"></span>
                 													</button>
-                													<button class="delete-modal btn btn-danger" onclick="deleteRowMasterTable('<?php echo $y->sub_department_name ?>','<?php echo $y->id ?>','sub_department')">
+                													<button class="delete-modal btn btn-xs btn-danger" onclick="deleteRowMasterTable('<?php echo $y->sub_department_name ?>','<?php echo $y->id ?>','sub_department')">
                     													<span class="glyphicon glyphicon-trash"></span>
                 													</button>
 																</td>

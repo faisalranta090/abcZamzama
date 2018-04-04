@@ -5,7 +5,7 @@
 	}else{
 		$m = Auth::user()->company_id;
 	}
-	$d = DB::selectOne('select `dbName` from `company` where `id` = '.$m.'')->dbName
+	//$d = DB::selectOne('select `dbName` from `company` where `id` = '.$m.'')->dbName;
 ?>
 @extends('layouts.default')
 
@@ -21,7 +21,7 @@
 						<div class="well">
 							<div class="row">
 								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-									<span class="subHeadingLabelClass">View Jobs List</span>
+									<span class="subHeadingLabelClass">View Hiring Request List</span>
 								</div>
 							</div>
 							<div class="lineHeight">&nbsp;</div>
@@ -32,24 +32,35 @@
 											<div class="table-responsive">
 												<table class="table table-bordered sf-table-list">
    													<thead>
-														<th class="text-center col-sm-1">S.No</th>
+														<th class="text-center">S.No</th>
+														<th class="text-center">Request No</th>
 														<th class="text-center">Job Title</th>
-														<th class="text-center">Employer Name</th>
-														<th class="text-center">Department</th>
 														<th class="text-center">Job Type</th>
-														<th class="text-center col-sm-1">Action</th>
+														<th class="text-center">Designation</th>
+														<th class="text-center">Qualification</th>
+														<th class="text-center">Shift Type</th>
+														<th class="text-center">Request Status</th>
+														<th class="text-center">Action</th>
 													</thead>
 													<tbody>
 														<?php $counter = 1;?>
-														@foreach($jobs as $key => $y)
+
+														@foreach($RequestHiring as $key => $y)
 															<tr>
 																<td class="text-center"><?php echo $counter++;?></td>
-																<td><?php echo $y->job_title;?></td>
-																<td><?php echo $y->employer_id;?></td>
-																<td><?php echo $y->department_id;?></td>
+																<td><?php echo $y->RequestHiringNo;?></td>
+																<td><?php echo $y->RequestHiringTitle;?></td>
 																<td><?php echo $y->job_type_id;?></td>
+																<td><?php echo $y->designation_id;?></td>
+																<td><?php echo $y->qualification_id;?></td>
+																<td><?php echo $y->shift_type_id;?></td>
+																<td><?php echo $y->RequestHiringStatus;?></td>
 																<td class="text-center">
-																	<a onclick="showDetailModelOneParamerter('hdc/viewJobDetail','<?php echo $y->id;?>','View Job Detail')" class="btn btn-xs btn-success">View</a>
+																	<a onclick="showDetailModelOneParamerter('hdc/viewHiringRequestDetail','<?php echo $y->id;?>','View Request Hiring Detail')" class="btn btn-xs btn-success"><span class="glyphicon glyphicon-eye-open"></span></a>
+
+																	<button class="delete-modal btn btn-xs btn-danger btn-xs" onclick="deleteRowCompanyHRRecords('<?php echo $m ?>','<?php echo $y->id ?>','RequestHiring')">
+                    													<span class="glyphicon glyphicon-trash"></span>
+                													</button>
 																</td>
 															</tr>
 														@endforeach

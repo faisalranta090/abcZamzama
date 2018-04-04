@@ -46,13 +46,13 @@
 																<td><?php echo $y->department_name;?></td>
 																<td><?php echo $y->username;?></td>
 																<td class="text-center">
-																	<button class="edit-modal btn btn-info" onclick="showMasterTableEditModel('hr/editDepartmentForm','<?php echo $y->id ?>','Department Edit Detail Form','<?php echo $m?>')">
+																	<button class="edit-modal btn btn-xs btn-info" onclick="showMasterTableEditModel('hr/editDepartmentForm','<?php echo $y->id ?>','Department Edit Detail Form','<?php echo $m?>')">
                     													<span class="glyphicon glyphicon-edit"></span>
                 													</button>
 
 
                 													
-                													<button class="delete-modal btn btn-danger" onclick="deleteRowMasterTable('<?php echo $y->department_name ?>','<?php echo $y->id ?>','department')">
+                													<button class="delete-modal btn btn-xs btn-danger" onclick="deleteRowMasterTable('<?php echo $y->department_name ?>','<?php echo $y->id ?>','department')">
                     													<span class="glyphicon glyphicon-trash"></span>
                 													</button>
 																</td>

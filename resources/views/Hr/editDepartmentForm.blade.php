@@ -12,6 +12,8 @@
 						<div class="well">
 							<?php echo Form::open(array('url' => 'had/editDepartmentDetail?m='.$m.'&&d='.$d.'','id'=>'departmentForm'));?>
 								<input type="hidden" name="_token" value="{{ csrf_token() }}">
+								<input type="hidden" name="pageType" value="<?php echo $_GET['pageType']?>">
+								<input type="hidden" name="parentCode" value="<?php echo $_GET['parentCode']?>">
 								<div class="panel">
 									<div class="panel-body">
 										<div class="row">

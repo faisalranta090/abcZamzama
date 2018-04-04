@@ -30,6 +30,8 @@
 							<div class="lineHeight">&nbsp;</div>
 							<?php echo Form::open(array('url' => 'had/addSubDepartmentDetail?m='.$m.'&&d='.$d.'','id'=>'subDepartmentForm'));?>
 								<input type="hidden" name="_token" value="{{ csrf_token() }}">
+								<input type="hidden" name="pageType" value="<?php echo $_GET['pageType']?>">
+								<input type="hidden" name="parentCode" value="<?php echo $_GET['parentCode']?>">
 								<div class="panel">
 									<div class="panel-body">
 										<div class="row">

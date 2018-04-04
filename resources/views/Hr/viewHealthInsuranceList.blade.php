@@ -46,13 +46,13 @@
 																<td><?php echo $y->health_insurance_name;?></td>
 																<td><?php echo $y->username;?></td>
 																<td class="text-center">
-																	<button class="edit-modal btn btn-info" onclick="showMasterTableEditModel('hr/editHealthInsuranceForm','<?php echo $y->id ?>','Health Insurance Edit Detail Form','<?php echo $m?>')">
+																	<button class="edit-modal btn btn-xs btn-info" onclick="showMasterTableEditModel('hr/editHealthInsuranceForm','<?php echo $y->id ?>','Health Insurance Edit Detail Form','<?php echo $m?>')">
                     													<span class="glyphicon glyphicon-edit"></span>
                 													</button>
 
 
                 													
-                													<button class="delete-modal btn btn-danger" onclick="deleteRowMasterTable('<?php echo $y->health_insurance_name ?>','<?php echo $y->id ?>','health_insurance')">
+                													<button class="delete-modal btn btn-xs btn-danger" onclick="deleteRowMasterTable('<?php echo $y->health_insurance_name ?>','<?php echo $y->id ?>','health_insurance')">
                     													<span class="glyphicon glyphicon-trash"></span>
                 													</button>
 																</td>

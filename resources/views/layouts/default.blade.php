@@ -328,11 +328,34 @@
 
 	}
 
+	function deleteRowCompanyHRRecords(companyId,recordId,tableName){
+		var companyId;
+		var recordId;
+		var tableName;
+		$.ajax({
+			url: '<?php echo url('/')?>/cdOne/deleteRowCompanyHRRecords',
+			type: "GET",
+			data: {companyId:companyId,recordId:recordId,tableName:tableName},
+			success:function(data) {
+				location.reload();
+			}
+      	});
+
+	}
+
 	function showMasterTableEditModel(url,id,modalName,m){
+		<?php
+			if(!empty($_GET['pageType'])){
+		?>
+			var pageType = '<?php echo $_GET['pageType'];?>';
+			var parentCode = '<?php echo $_GET['parentCode'];?>';
+		<?php 
+			}
+		?>
 		$.ajax({
 			url: '<?php echo url('/')?>/'+url+'',
 			type: "GET",
-			data: {id:id,m:m},
+			data: {id:id,m:m,pageType:pageType,parentCode:parentCode},
 			success:function(data) {
 				
 				jQuery('#showMasterTableEditModel').modal('show', {backdrop: 'false'});

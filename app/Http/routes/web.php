@@ -42,6 +42,19 @@ Route::get('/d', 'HomeController@index');
 
 Route::get('/deleteMasterTableReceord', 'DeleteMasterTableRecordController@deleteMasterTableReceord');
 
+//Start Company Database Record Delete
+Route::group(['prefix' => 'cdOne','before' => 'csrf'], function () {
+	Route::get('/deleteRowCompanyHRRecords', 'DeleteCompanyHRRecordsController@deleteRowCompanyHRRecords');
+});
+Route::group(['prefix' => 'cdTwo','before' => 'csrf'], function () {
+	//Route::get('/deleteRowCompanyHRRecords', 'DeleteCompanyTableRecordController@deleteRowCompanyHRRecords');
+});
+Route::group(['prefix' => 'cdThree','before' => 'csrf'], function () {
+	//Route::get('/deleteRowCompanyHRRecords', 'DeleteCompanyTableRecordController@deleteRowCompanyHRRecords');
+});
+//End Company Database Record Delete
+
+
 //Start Select List Ajax Load
 Route::group(['prefix' => 'slal','before' => 'csrf'], function () {
 	Route::get('/stateLoadDependentCountryId', 'SelectListLoadAjaxController@stateLoadDependentCountryId');
@@ -140,6 +153,9 @@ Route::group(['prefix' => 'hr','before' => 'csrf'], function () {
 	Route::get('/viewShiftTypeList','HrController@viewShiftTypeList');
 	Route::get('/editShiftTypeForm', 'HrController@editShiftTypeForm');
 	
+	Route::get('/createHiringRequestAddForm','HrController@createHiringRequestAddForm');
+	Route::get('/viewHiringRequestList','HrController@viewHiringRequestList');
+
 	
 	Route::get('/createEmployeeForm', 'HrController@createEmployeeForm');
 	Route::get('/viewEmployeeList','HrController@viewEmployeeList');
@@ -148,8 +164,7 @@ Route::group(['prefix' => 'hr','before' => 'csrf'], function () {
 	Route::get('/createPayslipForm','HrController@createPayslipForm');
 	Route::get('/viewPayslipList','HrController@viewPayslipList');
 
-	Route::get('/createJobAddForm','HrController@createJobAddForm');
-	Route::get('/viewJobsList','HrController@viewJobsList');
+	
 	
 });
 
@@ -191,7 +206,7 @@ Route::group(['prefix' => 'had','before' => 'csrf'], function () {
 	Route::post('/addEmployeeDetail','HrAddDetailControler@addEmployeeDetail');
 	Route::post('/addManageAttendenceDetail','HrAddDetailControler@addManageAttendenceDetail');
 	Route::post('/createPayslipForm','HrAddDetailControler@createPayslipForm');
-	Route::post('/addJobAddDetail','HrAddDetailControler@addJobAddDetail');
+	Route::post('/addHiringRequestDetail','HrAddDetailControler@addHiringRequestDetail');
 
 	
 });
@@ -203,7 +218,7 @@ Route::group(['prefix' => 'hdc','before' => 'csrf'], function (){
 	Route::get('/viewEmployeePaysilpForm','HrDataCallController@viewEmployeePaysilpForm');
 	Route::get('/viewEmployeePaysilpList','HrDataCallController@viewEmployeePaysilpList');
 	Route::get('/viewEmployeeDetail','HrDataCallController@viewEmployeeDetail');
-	Route::get('/viewJobDetail','HrDataCallController@viewJobDetail');
+	Route::get('/viewHiringRequestDetail','HrDataCallController@viewHiringRequestDetail');
 });
 
 Route::group(['prefix' => 'hmfal','before' => 'csrf'], function () {

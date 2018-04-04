@@ -51,13 +51,13 @@
 																<td><?php echo $InstituteName;?></td>
 																<td><?php echo $y->username;?></td>
 																<td class="text-center">
-																	<?php /*?><button class="edit-modal btn btn-info" onclick="showMasterTableEditModel('hr/editQualificationForm','<?php echo $y->id ?>','Qualification Edit Detail Form','<?php echo $m?>')">
+																	<?php /*?><button class="edit-modal btn-xs btn btn-info" onclick="showMasterTableEditModel('hr/editQualificationForm','<?php echo $y->id ?>','Qualification Edit Detail Form','<?php echo $m?>')">
                     													<span class="glyphicon glyphicon-edit"></span>
                 													</button><?php */?>
 
 
                 													
-                													<button class="delete-modal btn btn-danger" onclick="deleteRowMasterTable('<?php echo $y->qualification_name ?>','<?php echo $y->id ?>','qualification')">
+                													<button class="delete-modal btn btn-xs btn-danger" onclick="deleteRowMasterTable('<?php echo $y->qualification_name ?>','<?php echo $y->id ?>','qualification')">
                     													<span class="glyphicon glyphicon-trash"></span>
                 													</button>
 																</td>

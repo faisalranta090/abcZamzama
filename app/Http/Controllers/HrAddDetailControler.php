@@ -46,7 +46,7 @@ class HrAddDetailControler extends Controller
 			DB::table('department')->insert($data1);	
 		}
 		Session::flash('dataInsert','successfully saved.');
-		return Redirect::to('hr/viewDepartmentList?pageType=viewlist&&parentCode=6&&m='.$_GET['m'].'');
+		return Redirect::to('hr/viewDepartmentList?pageType='.Input::get('pageType').'&&parentCode='.Input::get('parentCode').'&&m='.$_GET['m'].'#SFR');
 	}
 
 	public function addSubDepartmentDetail(){
@@ -64,7 +64,7 @@ class HrAddDetailControler extends Controller
 			DB::table('sub_department')->insert($data1);	
 		}
 		Session::flash('dataInsert','successfully saved.');
-		return Redirect::to('hr/viewSubDepartmentList?pageType=viewlist&&parentCode=10&&m='.$_GET['m'].'');
+		return Redirect::to('hr/viewSubDepartmentList?pageType='.Input::get('pageType').'&&parentCode='.Input::get('parentCode').'&&m='.$_GET['m'].'#SFR');
 	}
 
 	public function addDesignationDetail(){
@@ -80,7 +80,7 @@ class HrAddDetailControler extends Controller
 			DB::table('designation')->insert($data1);	
 		}
 		Session::flash('dataInsert','successfully saved.');
-		return Redirect::to('hr/viewDesignationList?pageType=viewlist&&parentCode=11&&m='.$_GET['m'].'');
+		return Redirect::to('hr/viewDesignationList?pageType='.Input::get('pageType').'&&parentCode='.Input::get('parentCode').'&&m='.$_GET['m'].'#SFR');
 	}
 
 	public function addHealthInsuranceDetail(){
@@ -96,7 +96,7 @@ class HrAddDetailControler extends Controller
 			DB::table('health_insurance')->insert($data1);	
 		}
 		Session::flash('dataInsert','successfully saved.');
-		return Redirect::to('hr/viewHealthInsuranceList?pageType=viewlist&&parentCode=12&&m='.$_GET['m'].'');
+		return Redirect::to('hr/viewHealthInsuranceList?pageType='.Input::get('pageType').'&&parentCode='.Input::get('parentCode').'&&m='.$_GET['m'].'#SFR');
 	}
 
 	public function addLifeInsuranceDetail(){
@@ -112,7 +112,7 @@ class HrAddDetailControler extends Controller
 			DB::table('life_insurance')->insert($data1);	
 		}
 		Session::flash('dataInsert','successfully saved.');
-		return Redirect::to('hr/viewLifeInsuranceList?pageType=viewlist&&parentCode=13&&m='.$_GET['m'].'');
+		return Redirect::to('hr/viewLifeInsuranceList?pageType='.Input::get('pageType').'&&parentCode='.Input::get('parentCode').'&&m='.$_GET['m'].'#SFR');
 	}
 
 	public function addJobTypeDetail(){
@@ -128,7 +128,7 @@ class HrAddDetailControler extends Controller
 			DB::table('job_type')->insert($data1);	
 		}
 		Session::flash('dataInsert','successfully saved.');
-		return Redirect::to('hr/viewJobTypeList?pageType=viewlist&&parentCode=14&&m='.$_GET['m'].'');
+		return Redirect::to('hr/viewJobTypeList?pageType='.Input::get('pageType').'&&parentCode='.Input::get('parentCode').'&&m='.$_GET['m'].'#SFR');
 	}
 
 	public function addQualificationDetail(){
@@ -180,7 +180,7 @@ class HrAddDetailControler extends Controller
 			
 		}
 		Session::flash('dataInsert','successfully saved.');
-		return Redirect::to('hr/viewQualificationList?pageType=viewlist&&parentCode=15&&m='.$_GET['m'].'');
+		return Redirect::to('hr/viewQualificationList?pageType='.Input::get('pageType').'&&parentCode='.Input::get('parentCode').'&&m='.$_GET['m'].'#SFR');
 	}
 
 	public function addLeaveTypeDetail(){
@@ -196,7 +196,7 @@ class HrAddDetailControler extends Controller
 			DB::table('leave_type')->insert($data1);	
 		}
 		Session::flash('dataInsert','successfully saved.');
-		return Redirect::to('hr/viewLeaveTypeList?pageType=viewlist&&parentCode=16&&m='.$_GET['m'].'');
+		return Redirect::to('hr/viewLeaveTypeList?pageType='.Input::get('pageType').'&&parentCode='.Input::get('parentCode').'&&m='.$_GET['m'].'#SFR');
 	}
 
 	public function addLoanTypeDetail(){
@@ -212,7 +212,7 @@ class HrAddDetailControler extends Controller
 			DB::table('loan_type')->insert($data1);	
 		}
 		Session::flash('dataInsert','successfully saved.');
-		return Redirect::to('hr/viewLoanTypeList?pageType=viewlist&&parentCode=17&&m='.$_GET['m'].'');
+		return Redirect::to('hr/viewLoanTypeList?pageType='.Input::get('pageType').'&&parentCode='.Input::get('parentCode').'&&m='.$_GET['m'].'#SFR');
 	}
 
 	public function addAdvanceTypeDetail(){
@@ -228,7 +228,7 @@ class HrAddDetailControler extends Controller
 			DB::table('advance_type')->insert($data1);	
 		}
 		Session::flash('dataInsert','successfully saved.');
-		return Redirect::to('hr/viewAdvanceTypeList?pageType=viewlist&&parentCode=18&&m='.$_GET['m'].'');
+		return Redirect::to('hr/viewAdvanceTypeList?pageType='.Input::get('pageType').'&&parentCode='.Input::get('parentCode').'&&m='.$_GET['m'].'#SFR');
 	}
 
 	public function addShiftTypeDetail(){
@@ -244,7 +244,7 @@ class HrAddDetailControler extends Controller
 			DB::table('shift_type')->insert($data1);	
 		}
 		Session::flash('dataInsert','successfully saved.');
-		return Redirect::to('hr/viewShiftTypeList?pageType=viewlist&&parentCode=19&&m='.$_GET['m'].'');
+		return Redirect::to('hr/viewShiftTypeList?pageType='.Input::get('pageType').'&&parentCode='.Input::get('parentCode').'&&m='.$_GET['m'].'#SFR');
 	}
 
 	
@@ -252,40 +252,55 @@ class HrAddDetailControler extends Controller
 	
 
 
-	public function addJobAddDetail(){
+	public function addHiringRequestDetail(){
+		$d = Input::get('dbName');
+		$companyId = Input::get('company_id');
+		
+		Config::set(['database.connections.tenant.database' => $d]);
+		Config::set(['database.connections.tenant.username' => 'root']);
+		Config::set('database.default', 'tenant');
+		DB::reconnect('tenant');
+
 		$jobTitle = Input::get('job_title');
-		$employerId = Input::get('employer_id');
-		$departmentId = Input::get('department_id');
-		$jobType = Input::get('job_type_id');
-		$applyStartDate = Input::get('apply_start_date');
-		$applyEndDate = Input::get('apply_end_date');
+		$jobTypeId = Input::get('job_type_id');
+		$subDepartmentId = Input::get('sub_department_id');
+		$designationId = Input::get('designation_id');
+		$qualificationId = Input::get('qualification_id');
+		$shiftTypeId = Input::get('shift_type_id');
 		$gender = Input::get('gender');
-		$salary = Input::get('salary');
+		$salaryStart = Input::get('salary_start');
+		$salaryEnd = Input::get('salary_end');
 		$age = Input::get('age');
 		$jobDescription = Input::get('job_description');
 
-		$str = DB::selectOne("select max(convert(substr(`job_no`,4,length(substr(`job_no`,4))-4),signed integer)) reg from `jobs` where substr(`job_no`,-4,2) = ".date('m')." and substr(`job_no`,-2,2) = ".date('y')."")->reg;
-			$job_no = 'job'.($str+1).date('my');
+		$str = DB::selectOne("select max(convert(substr(`RequestHiringNo`,4,length(substr(`RequestHiringNo`,4))-4),signed integer)) reg from `RequestHiring` where substr(`RequestHiringNo`,-4,2) = ".date('m')." and substr(`RequestHiringNo`,-2,2) = ".date('y')."")->reg;
+			$RequestHiringNo = 'rhn'.($str+1).date('my');
 
-		$data1['job_no']			= strip_tags($job_no);
-		$data1['job_title'] 		= strip_tags($jobTitle);
-		$data1['employer_id'] 		= strip_tags($employerId);
-		$data1['department_id'] 	= strip_tags($departmentId);
-		$data1['job_type_id'] 	 	= strip_tags($jobType);
-		$data1['apply_start_date'] 	= strip_tags($applyStartDate);
-		$data1['apply_end_date'] 	= strip_tags($applyEndDate);
-		$data1['gender'] 			= strip_tags($gender);
-		$data1['age'] 				= strip_tags($age);
-		$data1['salary']			= strip_tags($salary);
-		$data1['description'] 		= strip_tags($jobDescription);
+		$data1['RequestHiringNo']			= strip_tags($RequestHiringNo);
+		$data1['RequestHiringTitle'] 		= strip_tags($jobTitle);
+		$data1['sub_department_id'] 		= strip_tags($subDepartmentId);
+		$data1['job_type_id'] 	= strip_tags($jobTypeId);
+		$data1['designation_id'] 	 	= strip_tags($designationId);
+		$data1['qualification_id'] 	= strip_tags($qualificationId);
+		$data1['shift_type_id'] 	= strip_tags($shiftTypeId);
+		$data1['RequestHiringGender'] 			= strip_tags($gender);
+		$data1['RequestHiringSalaryStart'] 				= strip_tags($salaryStart);
+		$data1['RequestHiringSalaryEnd']			= strip_tags($salaryEnd);
+		$data1['RequestHiringAge'] 		= strip_tags($age);
+		$data1['RequestHiringDescription']			= strip_tags($jobDescription);
+		$data1['RequestHiringStatus'] 		= 1;
 		$data1['username'] 		    = Auth::user()->name;
         $data1['status'] 		 	= 1;
         $data1['date']     		  	= date("Y-m-d");
         $data1['time']     		  	= date("H:i:s");
 
-        DB::table('jobs')->insert($data1);
+        DB::table('RequestHiring')->insert($data1);
+        Config::set('database.default', 'mysql');
+		DB::reconnect('mysql');
         Session::flash('dataInsert','successfully saved.');
-        return Redirect::to('hr/viewJobsList?pageType=viewlist&&parentCode=21');
+        return Redirect::to('hr/viewHiringRequestList?pageType='.Input::get('pageType').'&&parentCode='.Input::get('parentCode').'&&m='.$companyId.'#SFR');
+        Config::set('database.default', 'mysql');
+		DB::reconnect('mysql');
 	}
 	
 	function addEmployeeDetail(){
